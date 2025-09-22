@@ -6,14 +6,15 @@ $ ifconfig
 eth0: inet 192.168.183.X  netmask 255.255.255.0
 lo:  inet 127.0.0.1
 
+## Nmap Scan-Single Host
 $ nmap -sS 192.168.183.X
 Host is up (0.029s latency).
 Not shown: 999 filtered tcp ports (no-response)
 PORT   STATE SERVICE
 80/tcp open  http
 
+## Nmap Scan-Subnet (/24)
 $ nmap -sS 192.168.183.X/24
-
 Host: 192.168.183.7
 PORT     STATE  SERVICE
 1025/tcp closed NFS-or-IIS
@@ -25,8 +26,22 @@ PORT     STATE  SERVICE
 Remaining ports: all 1000 filtered
 
 
-Summary
+## Summary
 Open Ports: 80/tcp (HTTP) on host 192.168.183.X
 Closed Ports: 1025/tcp, 2800/tcp
 Filtered Ports: Remaining ports did not respond
 Observations: Open ports indicate active services; closed ports show no service; filtered ports may be blocked by firewalls.
+
+
+## Common Services and Security Risks
+
+| Port      | Service    | Potential Security Risk                |
+|-----------|------------|----------------------------------------|
+| 80/tcp    | HTTP       | Unpatched web apps, information leaks  |
+| 1025/tcp  | NFS-or-IIS | Default configs, remote exploits       |
+| 2800/tcp  | acc-raid   | Unauthorized access, weak credentials  |
+
+**Observations:**  
+- Open ports indicate active services accessible on the network.  
+- Closed ports show no service, but host is reachable.  
+- Filtered ports may be blocked by firewalls, indicating potential security measures.
